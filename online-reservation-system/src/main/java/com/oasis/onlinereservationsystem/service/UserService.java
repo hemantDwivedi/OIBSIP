@@ -7,4 +7,6 @@ public interface UserService {
     UserDto getUserById(Integer id);
     void deleteById(Integer id);
     UserDto update(Integer id, UserDto userDto);
+
+    boolean isUsernameAndPasswordExist(String username, String password);
 }
