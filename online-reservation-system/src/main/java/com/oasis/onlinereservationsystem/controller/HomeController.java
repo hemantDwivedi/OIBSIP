@@ -1,10 +1,13 @@
 package com.oasis.onlinereservationsystem.controller;
 
+import com.oasis.onlinereservationsystem.model.Reservation;
 import com.oasis.onlinereservationsystem.model.User;
+import com.oasis.onlinereservationsystem.service.ReservationService;
 import com.oasis.onlinereservationsystem.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
 
+    private ReservationService reservationService;
     private UserService userService;
 
     @GetMapping("/login")
@@ -32,7 +36,9 @@ public class HomeController {
     }
 
     @GetMapping("/reservation")
-    public String reservation(){
+    public String reservation(Model model){
+        Reservation reservation = new Reservation();
+        model.addAttribute("reservation", reservation);
         return "reservation";
     }
 
@@ -43,5 +49,17 @@ public class HomeController {
     @GetMapping("/index")
     public String index(){
         return "index";
+    }
+
+    @PostMapping("/reservation/book")
+    public String insert(@ModelAttribute("reservation") Reservation reservation,
+                         BindingResult result,
+                         Model model){
+        if(result.hasErrors()){
+            model.addAttribute("reservation", reservation);
+            return "/reservation";
+        }
+        reservationService.newReservation(reservation);
+        return "redirect:/reservation?success";
     }
 }
