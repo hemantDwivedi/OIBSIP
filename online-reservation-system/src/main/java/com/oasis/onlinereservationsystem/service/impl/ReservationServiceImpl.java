@@ -21,6 +21,13 @@ public class ReservationServiceImpl implements ReservationService {
         return repository.findByPnr(pnr);
     }
 
+    @Override
+    public boolean cancelTicket(String pnr) {
+        Reservation reservation = repository.findByPnr(pnr);
+        repository.delete(reservation);
+        return true;
+    }
+
     private String pnrGenerator(){
         long min = 10000000L;
         long max = 99999999L;
