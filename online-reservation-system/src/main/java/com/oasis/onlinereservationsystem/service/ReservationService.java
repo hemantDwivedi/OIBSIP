@@ -6,5 +6,5 @@ public interface ReservationService {
     void newReservation(Reservation reservation);
     Reservation findByPnrNumber(String pnr);
 
-    boolean cancelTicket(String pnr);
+    void cancelTicket(String pnr);
 }

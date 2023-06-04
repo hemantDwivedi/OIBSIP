@@ -22,10 +22,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public boolean cancelTicket(String pnr) {
+    public void cancelTicket(String pnr) {
         Reservation reservation = repository.findByPnr(pnr);
         repository.delete(reservation);
-        return true;
     }
 
     private String pnrGenerator(){

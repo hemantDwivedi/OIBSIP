@@ -32,8 +32,7 @@
       </form>
     </div>
   </div>
-  <div class="container" th:if="${reservation != null}">
-    <form method="post" role="form" th:action="@{/confirm-cancel}" class="form-horizontal">
+  <div class="container" th:if="${reservation.trainName != null}">
       <div class="card col-md-4 offset-md-4">
         <div class="card-header">
           <h3>Ticket Details</h3>
@@ -51,10 +50,9 @@
         <p th:text="*{reservation.fromPlace}"></p>
         <label class="control-label fw-bold">From:</label>
         <p th:text="*{reservation.toPlace}"></p>
-        <button class="btn btn-danger" type="submit">Cancel</button>
+        <a class="btn btn-danger" th:href="@{/confirm-cancel/pnr/{pnr}(pnr=${reservation.pnr})}">Cancel</a>
       </div>
       </div>
-    </form>
   </div>
 </body>
 
