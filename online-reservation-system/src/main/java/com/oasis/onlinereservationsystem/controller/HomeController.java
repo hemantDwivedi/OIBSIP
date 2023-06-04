@@ -20,11 +20,13 @@ public class HomeController {
     private ReservationService reservationService;
     private UserService userService;
 
+    // handle login page request
     @GetMapping("/login")
     public String sendLogin(){
         return "login";
     }
 
+    // handle login details and redirect to index page
     @PostMapping("/login")
     public String login(@ModelAttribute("user")User user, Model model){
         boolean usernameAndPasswordExist = userService.isUsernameAndPasswordExist(user.getUsername(), user.getPassword());
@@ -35,11 +37,10 @@ public class HomeController {
         return "login";
     }
 
+    // handle cancel ticket request
     @PostMapping("/cancel-ticket")
     public String ticket(@ModelAttribute("reservation") Reservation reservation, Model model){
         Reservation reservation1 = reservationService.findByPnrNumber(reservation.getPnr());
-//        System.out.println(reservation.getPnr());
-//        System.out.println(reservation1.getTrainNumber());
         if(reservation1 != null){
             model.addAttribute("reservation", reservation1);
             return "cancel-ticket";
@@ -48,10 +49,13 @@ public class HomeController {
         return "cancel-ticket";
     }
 
+    // handle cancel ticket confirmation
     @PostMapping("/confirm-cancel")
     public String confirmCancel(){
         return "booked";
     }
+
+    // handle reservation page request
     @GetMapping("/reservation")
     public String reservation(Model model){
         Reservation reservation = new Reservation();
@@ -59,15 +63,19 @@ public class HomeController {
         return "reservation";
     }
 
+    // handle cancel ticket form request
     @GetMapping("/cancel-form")
     public String cancel(){
         return "cancel-ticket";
     }
+
+    // handle index page request
     @GetMapping("/index")
     public String index(){
         return "index";
     }
 
+    // handle book ticket request submitted by user
     @PostMapping("/reservation/book")
     public String insert(@ModelAttribute("reservation") Reservation reservation,
                          BindingResult result,
@@ -78,6 +86,6 @@ public class HomeController {
         }
         reservationService.newReservation(reservation);
 
-        return "redirect:/reservation?success";
+        return "booked";
     }
 }

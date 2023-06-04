@@ -13,23 +13,30 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
   <div class="container-fluid">
-    <a class="navbar-brand text-dark" th:href="@{/index}">Online Reservation System</a>
+    <a class="navbar-brand text-dark fw-bold" th:href="@{/index}">Online Reservation System</a>
   </div>
 </nav>
 <div class="container">
   <div class="row mt-5 col-md-8 offset-md-2">
     <div class="card">
+    <div class="alert alert-info">You booked a ticket successfully</div>
       <div class="card-header">
         <h4>Ticket Details</h4>
       </div>
-      <div class="card-body" th:object="${reservation}">
-       <p th:field="*{pnr}"></p>
-       <p th:field="*{trainNumber}"></p>
-       <p th:field="*{trainName}"></p>
-       <p th:field="*{dateOfJourney}"></p>
-       <p th:field="*{fromPlace}"></p>
-       <p th:field="*{toPlace}"></p>
-
+      <div class="card-body">
+        <label class="control-label">PNR:</label>
+        <p th:text="*{reservation.pnr}"></p>
+        <label class="control-label">Train Number:</label>
+        <p th:text="*{reservation.trainNumber}"></p>
+        <label class="control-label">Train Name:</label>
+        <p th:text="*{reservation.trainName}"></p>
+        <label class="control-label">Date of Journey:</label>
+        <p th:text="*{reservation.dateOfJourney}"></p>
+        <label class="control-label">To:</label>
+        <p th:text="*{reservation.fromPlace}"></p>
+        <label class="control-label">From:</label>
+        <p th:text="*{reservation.toPlace}"></p>
+        <a class="btn btn-dark" th:href="@{/index}">Home</a>
       </div>
     </div>
   </div>

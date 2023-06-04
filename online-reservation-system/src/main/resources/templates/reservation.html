@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
         <div class="container-fluid">
-            <a class="navbar-brand text-dark" th:href="@{/index}">Online Reservation System</a>
+            <a class="navbar-brand text-dark fw-bold" th:href="@{/index}">Online Reservation System</a>
         </div>
     </nav>
     <div class="container">
@@ -22,9 +22,9 @@
                 <div class="card-header">
                     <h4>Ticket Reservation</h4>
                 </div>
-                <div th:if="${param.success}">
+                <!-- <div th:if="${param.success}">
                     <div class="alert alert-info">You have successfully booked</div>
-                </div> 
+                </div>  -->
                 <div class="card-body">
                     <form method="post" role="form" th:action="@{/reservation/book}" th:object="${reservation}">
                         <div class="form-group mb-3">
