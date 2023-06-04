@@ -35,6 +35,15 @@ public class HomeController {
         return "login";
     }
 
+    @PostMapping("/cancel")
+    public String ticket(@ModelAttribute("reservation") Reservation reservation, Model model){
+        Reservation reservation1 = reservationService.findByPnrNumber(reservation.getPnr());
+        if(reservation1 != null){
+            return "confirm";
+        }
+        model.addAttribute("error", "Cannot find any reservation, Please check PNR number!");
+        return "cancel-form";
+    }
     @GetMapping("/reservation")
     public String reservation(Model model){
         Reservation reservation = new Reservation();
@@ -60,6 +69,7 @@ public class HomeController {
             return "/reservation";
         }
         reservationService.newReservation(reservation);
+
         return "redirect:/reservation?success";
     }
 }

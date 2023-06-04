@@ -14,19 +14,26 @@
   <div class="container-fluid">
     <a class="navbar-brand text-dark" th:href="@{/index}">Online Reservation System</a>
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="navbar-brand text-dark" th:href="@{/reservation}">Reservation</a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand text-dark" th:href="@{/cancel-form}">Cancel Ticket</a>
-      </li>
     </ul>
   </div>
 </nav>
 <div class="container">
   <div class="row mt-5">
-    <h1 class="text-center">Welcome to Our Online Reservation System</h1>
-    <hr />
+    <form method="post" role="form" th:action="@{/cancel}" th:object="${reservation}" class="form-horizontal">
+      <p th:if="${error}" class="text-danger">Cannot find any reservation, Please check PNR number!</p>
+      <div class="form-group mb-3">
+          <label class="control-label">PNR:</label>
+          <input
+                  type="text"
+                  id="pnr"
+                  name="pnr"
+                  class="form-control"
+          />
+      </div>
+      <div class="form-group mb-3">
+          <button type="submit" class="btn btn-warning">Cancel Ticket</button>
+      </div>
+  </form>
   </div>
 </div>
 </body>
