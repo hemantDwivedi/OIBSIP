@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row mt-5 col-md-4 offset-md-4">
       <form method="post" role="form" th:action="@{/cancel-ticket}" th:object="${reservation}" class="form-horizontal">
-        <p th:if="${error}" class="text-danger">Cannot find any reservation, Please check PNR number!</p>
+        <p th:if="${error}" class="alert alert-dangerdanger">Cannot find any reservation, Please check PNR number!</p>
         <div class="form-group mb-3">
           <label class="control-label">PNR:</label>
           <input type="text" id="pnr" name="pnr" class="form-control" />
@@ -32,7 +32,7 @@
       </form>
     </div>
   </div>
-  <div class="container" th:if="${reservation.trainName != null}">
+  <div class="container" th:if="${reservation != null}">
       <div class="card col-md-4 offset-md-4">
         <div class="card-header">
           <h3>Ticket Details</h3>

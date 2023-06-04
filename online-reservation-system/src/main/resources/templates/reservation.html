@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>ORS - Online Reservation System</title>
 </head>
 
@@ -22,47 +28,39 @@
                 <div class="card-header">
                     <h4>Ticket Reservation</h4>
                 </div>
-                <!-- <div th:if="${param.success}">
-                    <div class="alert alert-info">You have successfully booked</div>
-                </div>  -->
                 <div class="card-body">
                     <form method="post" role="form" th:action="@{/reservation/book}" th:object="${reservation}">
                         <div class="form-group mb-3">
                             <label class="form-label">Train Number</label>
-                            <input class="form-control" id="trainNumber" name="trainNumber" placeholder="Train: 12558" th:field="*{trainNumber}"
-                                type="text" />
-                            <!--            <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>-->
+                            <input class="form-control" id="trainNumber" name="trainNumber" placeholder="Train: 12558"
+                                th:field="*{trainNumber}" type="text" />
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">Train Name</label>
-                            <input class="form-control" id="trainName" name="trainName" placeholder="Spt. Express" th:field="*{trainName}"
-                                type="text" />
-                            <!--            <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>-->
+                            <input class="form-control" id="trainName" name="trainName" placeholder="Spt. Express"
+                                th:field="*{trainName}" type="text" />
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">Class Type</label>
                             <input class="form-control" id="classType" name="classType" th:field="*{classType}"
                                 placeholder="sleeper, 3AC, CC, second sitting" type="text" />
-                            <!--            <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>-->
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">Date of Journey</label>
                             <input class="form-control" id="dateOfJourney" name="dateOfJourney" th:field="*{dateOfJourney}"
-                                placeholder="13/05/2023" type="text" />
-                            <!--            <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>-->
+                                placeholder="13/05/2023" type="date" />
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">From</label>
-                            <input class="form-control" id="fromPlace" name="fromPlace" placeholder="Ex: Kolkata" type="text" th:field="*{fromPlace}" />
-                            <!--            <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>-->
+                            <input class="form-control" id="fromPlace" name="fromPlace" placeholder="Ex: Kolkata"
+                                type="text" th:field="*{fromPlace}" />
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label">To</label>
-                            <input class="form-control" id="toPlace" placeholder="Ex: Patna" name="toPlace" type="text" th:field="*{toPlace}" />
-                            <!--            <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>-->
+                            <input class="form-control" id="toPlace" placeholder="Ex: Patna" name="toPlace" type="text"
+                                th:field="*{toPlace}" />
                         </div>
                         <button class="btn btn-warning" type="submit">Book</button>
-                        <!-- <button class="btn btn-dark" th:if="${param.success}" type="button" th:href="@{/booked}">View Ticket</button> -->
                     </form>
                 </div>
             </div>
