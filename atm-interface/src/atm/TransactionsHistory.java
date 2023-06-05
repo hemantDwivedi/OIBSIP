@@ -7,6 +7,15 @@ public class TransactionsHistory {
     private Long amount;
     private LocalDate date;
     private LocalTime time;
+    private String transactionType;
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
 
     public Long getAmount() {
         return amount;

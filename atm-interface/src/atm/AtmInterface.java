@@ -10,6 +10,8 @@ public class AtmInterface {
         Authenticate authenticate = new Authenticate();
         Withdraw withdraw = new Withdraw();
         TransactionsHistory transactionsHistory = new TransactionsHistory();
+        Deposit deposit = new Deposit();
+        Transfer transfer = new Transfer();
         Scanner scanner = new Scanner(System.in);
         System.out.println(
                 "---------welcome to ATM---------"
@@ -45,9 +47,10 @@ public class AtmInterface {
                         System.out.println("Amount: " + transactionsHistory.getAmount());
                         System.out.println("Date: " + transactionsHistory.getDate());
                         System.out.println("Time: " + transactionsHistory.getTime());
+                        System.out.println("Transaction Type: " + transactionsHistory.getTransactionType());
                     }
                     case 2 -> {
-                        System.out.println("Enter amount: ");
+                        System.out.print("Enter amount: ");
                         long amount = scanner.nextLong();
                         long withdrawMoney = withdraw.withdrawMoney(amount, database.getBalance());
                         System.out.println("successfully withdraw " + amount);
@@ -57,9 +60,32 @@ public class AtmInterface {
                         transactionsHistory.setAmount(amount);
                         transactionsHistory.setDate(LocalDate.now());
                         transactionsHistory.setTime(LocalTime.now());
+                        transactionsHistory.setTransactionType("Withdraw");
                     }
-                    case 3 -> System.out.println("deposit");
-                    case 4 -> System.out.println("transfer");
+                    case 3 -> {
+                        System.out.print("Enter amount: ");
+                        long amount = scanner.nextLong();
+                        long depositMoney = deposit.depositMoney(amount, database.getBalance());
+
+                        // set transaction history
+                        transactionsHistory.setAmount(amount);
+                        transactionsHistory.setDate(LocalDate.now());
+                        transactionsHistory.setTime(LocalTime.now());
+                        transactionsHistory.setTransactionType("deposit");
+                    }
+                    case 4 -> {
+                        System.out.print("Enter amount to transfer: ");
+                        long amount = scanner.nextLong();
+                        long totalAmount = database.getBalance();
+                        totalAmount -= amount;
+                        System.out.println(transfer.transferMoney());
+
+                        // set transaction history
+                        transactionsHistory.setAmount(amount);
+                        transactionsHistory.setDate(LocalDate.now());
+                        transactionsHistory.setTime(LocalTime.now());
+                        transactionsHistory.setTransactionType("transfer");
+                    }
                     case 5 -> System.exit(5);
                     default -> System.out.println("Invalid");
                 }
